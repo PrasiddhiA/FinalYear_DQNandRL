@@ -92,7 +92,7 @@ def load_traffic_events_from_file(filepath):
             if i == 0:
                 start_time = timestamp
             relative_time = (timestamp - start_time).total_seconds()
-            events.append({'time': int(relative_time), 'type': row['VehicleType']})
+            events.append({'time': int(relative_time), 'VehicleType': row['VehicleType']})
 
     print(f"Loaded {len(events)} vehicle events for the simulation.")
     return events

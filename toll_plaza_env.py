@@ -136,6 +136,10 @@ class TollPlazaEnv(gym.Env):
             else:
                 self.queues[lane_index, 1] += 1
 
+        self.simulation_time = event['time']
+        for i, lt in enumerate(lane_config):
+            self._process_lane(i, lt)
+        
         # Simple reward: penalize congestion; small positive for revenue
         throughput_penalty = -np.sum(self.queues)
         revenue_inc = self.TOLL_PER_CAR if vehicle_type == "car" else self.TOLL_PER_TRUCK
